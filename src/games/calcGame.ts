@@ -1,52 +1,52 @@
-import {randomOf, readln} from "../libs";
-import {Game} from "../game/Game";
-import { Expectation } from "../Expectation";
+import {Game} from "../game/backend/Game";
+import {randomOf} from "../libs";
+import {buildGame, buildSimpleGame} from "../game/builder/buildSimpleGame";
 
-const operations: ('+' | '-' | '*')[] = ["+", "-", "*"]
-
-
-export class CalcGame implements Game<{ a: number, b: number, operation: '+' | '-' | '*' }, number> {
-    next(): Promise<Expectation<number, { type: "Ok"; } | { type: "Retype"; description: string; }> | null> {
-        throw new Error("Method not implemented.");
-    }
+export namespace CalcGame {
+    export type Question = {a: number, b: number, operation: '-' | '+' | '*', validAnswer: number}
+    export type Answer = number
+    export type Result = "Valid" | "Fail"
+    export type GameResult = "Congratulations" | "Fail"
 }
 
-export async function runCalcGame(
-    username: string
-) {
-    console.log(`Hello, ${username}!`)
-    for (let iteration = 1; iteration < 4; iteration++) {
-        const num1 = Math.round(Math.random() * 10)
-        const num2 = Math.round(Math.random() * 10)
-        const operation = randomOf(operations)
-        const result = (() => {
-            if (operation === '+')
-                return num1 + num2
-            if (operation === '-')
-                return num1 - num2
-            if (operation === '*')
-                return num1 * num2
-            throw Error('unreachable')
-        })()
-        console.log(`What is the result of the expression?`)
-        console.log(`Question: ${num1} ${operation} ${num2} (${result})`)
-        const answer = await (async () => {
-            while (true) {
-                const answer = parseInt(await readln("Your answer: "))
-                if (isNaN(answer)) {
-                    console.log("Not a number!")
-                    continue
-                }
-                return answer
-            }
-        })()
-        if (result === answer) {
-            console.log("Correct!")
+export type CalcGame = Game<CalcGame.Question, CalcGame.Answer, CalcGame.Result, CalcGame.GameResult>
+
+function question(): CalcGame.Question {
+    const num1 = Math.round(Math.random() * 10)
+    const num2 = Math.round(Math.random() * 10)
+    const operation = randomOf(["+", "-", "*"])
+    const result = (() => {
+        if (operation === '+')
+            return num1 + num2
+        if (operation === '-')
+            return num1 - num2
+        if (operation === '*')
+            return num1 * num2
+        throw Error('unreachable')
+    })()
+
+    return {a: num1, b: num2, operation: operation, validAnswer: result}
+}
+
+export const CalcGame = (): CalcGame => buildGame<CalcGame>(async (builder) => {
+    const questions = [
+        question(),
+        question(),
+        question(),
+        question()
+    ]
+
+    for (let i = 1; i < 4; i++) {
+        const question = questions[i-1]
+
+        const [answer, answerResolve] = await builder.next(question)
+        if (answer === question.validAnswer) {
+            answerResolve("Valid")
         } else {
-            console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'.`)
-            console.log(`Let's try again, ${username}!`)
-            return
+            answerResolve("Fail")
+            builder.finish("Fail")
         }
     }
-    console.log(`Congratulations, ${username}!`)
-}
+
+    return "Congratulations"
+})
