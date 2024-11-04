@@ -1,8 +1,9 @@
 import {MutableQueue} from "../../libs/Queue";
+import {GameFinishError} from "../builder/GameFinishError";
 
 export interface GameController<QUESTION, ANSWER, RESULT, GAME_RESULT> {
     isActive: boolean
-    questions: AsyncIterator<[QUESTION, (answer: ANSWER) => Promise<RESULT>]>
+    questions: AsyncIterator<[QUESTION, (answer: ANSWER) => Promise<RESULT>], GAME_RESULT>
     await(): Promise<GAME_RESULT> // ждет isActive === false
 
     _next(question: QUESTION): Promise<[ANSWER, (result: RESULT) => void]>
@@ -26,7 +27,7 @@ export function GameController<QUESTION, ANSWER, RESULT, GAME_RESULT>(): GameCon
         questions: {
             next: async function (): Promise<IteratorResult<[QUESTION, (answer: ANSWER) => Promise<RESULT>], GAME_RESULT>> {
                 if (!controller.isActive)
-                    return { done: true, value: gameResult as GAME_RESULT }
+                    return { done: true, value: gameResult! }
                 const result = await questionsQueue.next()
                 return { done: false, value: result }
             }
@@ -35,7 +36,7 @@ export function GameController<QUESTION, ANSWER, RESULT, GAME_RESULT>(): GameCon
 
         _next: async function (question: QUESTION): Promise<[ANSWER, (result: RESULT) => void]> {
             if (!this.isActive)
-                throw Error("Game finished!")
+                throw new GameFinishError()
 
             let resolveAnswer!: (answer: ANSWER) => void
             const answerPromise = new Promise<ANSWER>((resolve) =>
@@ -59,6 +60,8 @@ export function GameController<QUESTION, ANSWER, RESULT, GAME_RESULT>(): GameCon
             }]
         },
         finish: function (gameResult: GAME_RESULT): void {
+            if (!this.isActive)
+                throw new GameFinishError()
             this.isActive = false
             finishGame(gameResult)
         }

@@ -6,12 +6,12 @@ export namespace CalcGame {
     export type Question = {a: number, b: number, operation: '-' | '+' | '*', validAnswer: number}
     export type Answer = number
     export type Result = "Valid" | "Fail"
-    export type GameResult = "Congratulations" | "Fail"
+    export type GameResult = {validAnswers: number, invalidAnswers: number}
 }
 
 export type CalcGame = Game<CalcGame.Question, CalcGame.Answer, CalcGame.Result, CalcGame.GameResult>
 
-function question(): CalcGame.Question {
+function createQuestion(): CalcGame.Question {
     const num1 = Math.round(Math.random() * 10)
     const num2 = Math.round(Math.random() * 10)
     const operation = randomOf(["+", "-", "*"])
@@ -29,24 +29,41 @@ function question(): CalcGame.Question {
 }
 
 export const CalcGame = (): CalcGame => buildGame<CalcGame>(async (builder) => {
-    const questions = [
-        question(),
-        question(),
-        question(),
-        question()
-    ]
+    let validAnswers = 0
+    let invalidAnswers = 0
+    builder.onFinishRequest(async () => ({validAnswers, invalidAnswers}))
 
-    for (let i = 1; i < 4; i++) {
-        const question = questions[i-1]
+    while (true) {
+        const question = createQuestion()
 
         const [answer, answerResolve] = await builder.next(question)
         if (answer === question.validAnswer) {
+            validAnswers++
             answerResolve("Valid")
         } else {
+            invalidAnswers++
             answerResolve("Fail")
-            builder.finish("Fail")
         }
     }
 
-    return "Congratulations"
+    // const questions = [
+    //     createQuestion(),
+    //     createQuestion(),
+    //     createQuestion(),
+    //     createQuestion()
+    // ]
+    //
+    // for (let i = 1; i < 4; i++) {
+    //     const question = questions[i-1]
+    //
+    //     const [answer, answerResolve] = await builder.next(question)
+    //     if (answer === question.validAnswer) {
+    //         answerResolve("Valid")
+    //     } else {
+    //         answerResolve("Fail")
+    //         builder.finish("Fail")
+    //     }
+    // }
+    //
+    // return "Congratulations"
 })

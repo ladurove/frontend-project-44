@@ -8,6 +8,8 @@ import {GameController} from "./game/backend/GameController";
 import {GameFinishError} from "./game/builder/GameFinishError";
 import {buildSimpleGame} from "./game/builder/buildSimpleGame";
 import {CalcGame} from "./games/calcGame";
+import {WithMaxIterations} from "./game/modifiers/WithMaxIterations";
+import {WithTermResult} from "./game/modifiers/WithTermResult";
 
 
 // const username = await getUsername()
@@ -62,7 +64,10 @@ async function runConsoleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(
 
 
 const username = await getUsername()
-const game = CalcGame()
+const game = WithTermResult(
+    WithMaxIterations(CalcGame(), 5),
+    (result) => result === 'Fail'
+)
 
 console.log(`Hello, ${username}!`)
 await runConsoleGame(game, {
@@ -80,11 +85,11 @@ await runConsoleGame(game, {
             throw Error(`unreachable result ${result}`)
     },
     stringifyGameResult: (gameResult) => {
-        if (gameResult === 'Congratulations')
+        if (gameResult.invalidAnswers === 0)
             return `Congratulations, ${username}!`
-        else if (gameResult === 'Fail')
-            return `Let's try again, ${username}!`
+        else if (gameResult.validAnswers > gameResult.invalidAnswers)
+            return `Good, ${username}!`
         else
-            throw Error(`unreachable gameResult ${gameResult}`)
+            return `Let's try again, ${username}!`
     }
 })
