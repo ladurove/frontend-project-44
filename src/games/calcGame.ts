@@ -31,7 +31,9 @@ function createQuestion(): CalcGame.Question {
 export const CalcGame = (): CalcGame => buildGame<CalcGame>(async (builder) => {
     let validAnswers = 0
     let invalidAnswers = 0
-    builder.onFinishRequest(async () => ({validAnswers, invalidAnswers}))
+    builder.onFinishRequest(async () =>
+        ({validAnswers, invalidAnswers})
+    )
 
     while (true) {
         const question = createQuestion()
@@ -45,25 +47,4 @@ export const CalcGame = (): CalcGame => buildGame<CalcGame>(async (builder) => {
             answerResolve("Fail")
         }
     }
-
-    // const questions = [
-    //     createQuestion(),
-    //     createQuestion(),
-    //     createQuestion(),
-    //     createQuestion()
-    // ]
-    //
-    // for (let i = 1; i < 4; i++) {
-    //     const question = questions[i-1]
-    //
-    //     const [answer, answerResolve] = await builder.next(question)
-    //     if (answer === question.validAnswer) {
-    //         answerResolve("Valid")
-    //     } else {
-    //         answerResolve("Fail")
-    //         builder.finish("Fail")
-    //     }
-    // }
-    //
-    // return "Congratulations"
 })

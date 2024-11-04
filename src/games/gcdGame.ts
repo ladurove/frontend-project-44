@@ -1,4 +1,6 @@
-import {readln} from "../libs";
+import {Game} from "../game/backend/Game";
+import {buildGame} from "../game/builder/buildSimpleGame";
+
 
 function findGcd(num1: number, num2: number): number {
     const max = Math.max(num1, num2)
@@ -10,34 +12,40 @@ function findGcd(num1: number, num2: number): number {
     return gcd
 }
 
-export async function runGcdGame(
-    username: string
-) {
-    console.log(`Hello, ${username}!`)
-    for (let iteration = 1; iteration < 4; iteration++) {
-        const num1 = Math.ceil(Math.random() * 10)
-        const num2 = Math.ceil(Math.random() * 10)
-        const correctGcd = findGcd(num1, num2)
-        console.log(`Find the greatest common divisor of given numbers.`)
-        console.log(`Question: ${num1} ${num2} (${correctGcd})`)
-        const answer = await (async () => {
-            while (true) {
-                const answer = parseInt(await readln("Your answer: "))
-                if (isNaN(answer)) {
-                    console.log("Not a number!")
-                    continue
-                }
-                return answer
-            }
-        })()
-        if (answer === correctGcd) {
-            console.log("Correct!")
-        } else {
-            console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctGcd}'.`)
-            console.log(`Let's try again, ${username}!`)
-            return
-        }
-    }
-    console.log(`Congratulations, ${username}!`)
+
+export namespace GdcGame {
+    export type Question = {a: number, b: number, validAnswer: number}
+    export type Answer = number
+    export type Result = "Valid" | "Fail"
+    export type GameResult = {validAnswers: number, invalidAnswers: number}
 }
 
+export type GdcGame = Game<GdcGame.Question, GdcGame.Answer, GdcGame.Result, GdcGame.GameResult>
+
+function createQuestion(): GdcGame.Question {
+    const num1 = Math.ceil(Math.random() * 10)
+    const num2 = Math.ceil(Math.random() * 10)
+    const correctGcd = findGcd(num1, num2)
+    return {a: num1, b: num2, validAnswer: correctGcd}
+}
+
+export const GcdGame = (): GdcGame => buildGame<GdcGame>(async (builder) => {
+    let validAnswers = 0
+    let invalidAnswers = 0
+    builder.onFinishRequest(async () =>
+        ({validAnswers, invalidAnswers})
+    )
+
+    while (true) {
+        const question = createQuestion()
+
+        const [answer, answerResolve] = await builder.next(question)
+        if (answer === question.validAnswer) {
+            validAnswers++
+            answerResolve("Valid")
+        } else {
+            invalidAnswers++
+            answerResolve("Fail")
+        }
+    }
+})
