@@ -1,6 +1,6 @@
-import {Game} from "../game/backend/Game";
-import {randomOf} from "../libs";
-import {buildGame, buildSimpleGame} from "../game/builder/buildSimpleGame";
+import {Game} from "../../libs/game/backend/Game.js";
+import {randomOf} from "../../libs/libs.js";
+import {buildGame, buildSimpleGame} from "../../libs/game/builder/buildSimpleGame.js";
 
 export namespace CalcGame {
     export type Question = {a: number, b: number, operation: '-' | '+' | '*', validAnswer: number}

@@ -1,5 +1,5 @@
-import {Game} from "../game/backend/Game";
-import {buildGame} from "../game/builder/buildSimpleGame";
+import {Game} from "../../libs/game/backend/Game.js";
+import {buildGame} from "../../libs/game/builder/buildSimpleGame.js";
 
 
 function findGcd(num1: number, num2: number): number {

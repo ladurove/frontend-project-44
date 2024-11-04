@@ -1,6 +1,6 @@
-import {Game} from "../backend/Game";
-import {GameController} from "../backend/GameController";
-import {GameFinishError} from "./GameFinishError";
+import {Game} from "../backend/Game.js";
+import {GameController} from "../backend/GameController.js";
+import {GameFinishError} from "./GameFinishError.js";
 
 
 export function buildGame<
@@ -45,6 +45,8 @@ export function buildSimpleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(
         requestFinish: async () => {
             if (onFinishRequest === undefined)
                 throw Error("early finishing is not supported by this game")
+            if (!controller.isActive)
+                return controller.asFinished()
             return await onFinishRequest()
         }
     }

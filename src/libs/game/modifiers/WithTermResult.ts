@@ -1,4 +1,4 @@
-import {Game} from "../backend/Game";
+import {Game} from "../backend/Game.js";
 
 export function WithTermResult<QUESTION, ANSWER, RESULT, GAME_RESULT>(
     game: Game<QUESTION, ANSWER, RESULT, GAME_RESULT>,
