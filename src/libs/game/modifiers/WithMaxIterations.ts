@@ -1,4 +1,4 @@
-import {Game} from "../backend/Game.js";
+import type {Game} from "../backend/Game.js";
 
 
 export function WithMaxIterations<QUESTION, ANSWER, RESULT, GAME_RESULT>(

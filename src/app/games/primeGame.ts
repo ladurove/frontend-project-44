@@ -1,5 +1,5 @@
 import {randomOf, readln} from "../../libs/libs.js";
-import {Game} from "../../libs/game/backend/Game.js";
+import type {Game} from "../../libs/game/backend/Game.js";
 import {buildGame} from "../../libs/game/builder/buildSimpleGame.js";
 
 

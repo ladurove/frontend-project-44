@@ -1,4 +1,4 @@
-import {Game} from "../../libs/game/backend/Game.js";
+import type {Game} from "../../libs/game/backend/Game.js";
 import {readln} from "../../libs/libs.js";
 
 export async function runConsoleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(

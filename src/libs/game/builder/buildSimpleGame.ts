@@ -1,6 +1,7 @@
-import {Game} from "../backend/Game.js";
+import type {Game} from "../backend/Game.js";
 import {GameController} from "../backend/GameController.js";
 import {GameFinishError} from "./GameFinishError.js";
+import type {GameBuilder} from "./GameBuilder.js";
 
 
 export function buildGame<

@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: make-bin
+        run: npm run make-bin
+
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
