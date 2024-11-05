@@ -14,7 +14,7 @@ export async function runConsoleGame(game, config) {
             let message = config.stringifyQuestion?.call(null, question);
             while (true) {
                 const input = await readln(message);
-                const deserializeResult = config.deserializeAnswer(input);
+                const deserializeResult = config.deserializeAnswer(input, question);
                 if (deserializeResult.type === 'Ok')
                     return [input, deserializeResult.answer];
                 message = deserializeResult.message;

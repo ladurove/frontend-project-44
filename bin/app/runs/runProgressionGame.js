@@ -6,11 +6,12 @@ import { runConsoleGame } from "./runConsoleGame.js";
 import { ProgressionGame } from "../games/progressionGame.js";
 export async function runProgressionGame() {
     const username = await getUsername();
-    const game = WithTermResult(WithMaxIterations(ProgressionGame(), 3), (result) => result === 'Fail');
+    const game = WithTermResult(WithMaxIterations(ProgressionGame(), 300), (result) => result === 'Fail');
     console.log(`Hello, ${username}!`);
     await runConsoleGame(game, {
-        deserializeAnswer: (string) => ({
-            type: 'Ok', answer: parseInt(string)
+        deserializeAnswer: (string, question) => ({
+            // type: 'Ok', answer: parseInt(string)
+            type: 'Ok', answer: question.validAnswer
         }),
         stringifyQuestion: (question) => `What number is missing in the progression?\n` +
             (() => {
@@ -26,7 +27,7 @@ export async function runProgressionGame() {
                 str.push('\n');
                 return str.join('');
             })() +
-            `Your answer: `,
+            `Your answer ${question.validAnswer}: `,
         stringifyResult: (result, answer, question) => {
             if (result === `Valid`)
                 return `Correct!`;

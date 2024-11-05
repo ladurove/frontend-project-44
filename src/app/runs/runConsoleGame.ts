@@ -4,7 +4,7 @@ import {readln} from "../../libs/libs.js";
 export async function runConsoleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(
     game: Game<QUESTION, ANSWER, RESULT, GAME_RESULT>,
     config: Readonly<{
-        deserializeAnswer: (string: string) => { type: "Ok", answer: ANSWER } | { type: "Retype", message: string },
+        deserializeAnswer: (string: string, question: QUESTION) => { type: "Ok", answer: ANSWER } | { type: "Retype", message: string },
         stringifyQuestion?: (question: QUESTION) => string | undefined,
         stringifyResult?: (result: RESULT, answer: ANSWER, question: QUESTION, input: string) => string | undefined,
         stringifyGameResult?: (result: GAME_RESULT) => string | undefined,
@@ -24,7 +24,7 @@ export async function runConsoleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(
             let message = config.stringifyQuestion?.call(null, question)
             while (true) {
                 const input = await readln(message)
-                const deserializeResult = config.deserializeAnswer(input)
+                const deserializeResult = config.deserializeAnswer(input, question)
                 if (deserializeResult.type === 'Ok')
                     return [input, deserializeResult.answer]
                 message = deserializeResult.message

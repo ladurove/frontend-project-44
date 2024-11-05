@@ -13,6 +13,7 @@ export namespace ProgressionGame {
 export type ProgressionGame = Game<ProgressionGame.Question, ProgressionGame.Answer, ProgressionGame.Result, ProgressionGame.GameResult>
 
 function createProgression(length: number = 10): ProgressionGame.Question {
+    if (length < 2) throw Error('length must be >= 2')
     const num = Math.max(1, Math.round(Math.random() * 10))
     const startNum = Math.round(Math.random() * 20)
     const nums = (() => {
@@ -24,9 +25,10 @@ function createProgression(length: number = 10): ProgressionGame.Question {
     })()
     const [before, after, validAnswer] = (() => {
         const gap = Math.round(Math.random() * length)
-        const before = nums.slice(0, gap - 1)
+        const before = nums.slice(0, gap)
         const after = nums.slice(gap, nums.length)
-        return [before, after, nums[gap - 1]]
+        const validAnswer = before.pop() ?? after.shift()!
+        return [before, after, validAnswer]
     })()
 
     return {before, after, validAnswer}
