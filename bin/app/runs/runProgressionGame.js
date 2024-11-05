@@ -9,9 +9,8 @@ export async function runProgressionGame() {
     const game = WithTermResult(WithMaxIterations(ProgressionGame(), 3), (result) => result === 'Fail');
     console.log(`Hello, ${username}!`);
     await runConsoleGame(game, {
-        deserializeAnswer: (string, question) => ({
-            // type: 'Ok', answer: parseInt(string)
-            type: 'Ok', answer: question.validAnswer
+        deserializeAnswer: (string) => ({
+            type: 'Ok', answer: parseInt(string)
         }),
         stringifyQuestion: (question) => `What number is missing in the progression?\n` +
             (() => {
@@ -27,7 +26,7 @@ export async function runProgressionGame() {
                 str.push('\n');
                 return str.join('');
             })() +
-            `Your answer ${question.validAnswer}: `,
+            `Your answer: `,
         stringifyResult: (result, answer, question) => {
             if (result === `Valid`)
                 return `Correct!`;
