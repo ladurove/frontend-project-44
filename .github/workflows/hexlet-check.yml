@@ -18,10 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Hexlet project check
-        uses: hexlet/project-action@release
+      - name: make-bin
+        using: 'node20'
         run:
           npm install
-          npm run make-bin
+
+      - name: Hexlet project check
+        uses: hexlet/project-action@release
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
