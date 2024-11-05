@@ -18,10 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: npm install
+        run: npm install
+
       - name: make-bin
-        using: 'node20'
-        run:
-          npm install
+        run: npm run make-bin
 
       - name: Hexlet project check
         uses: hexlet/project-action@release
