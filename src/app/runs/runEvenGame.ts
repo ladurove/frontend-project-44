@@ -25,7 +25,7 @@ export async function runEvenGame() {
             return { type: 'Retype', message: 'Your answer (y/n): ' }
         },
         stringifyQuestion: (question) =>
-            `Answer 'yes' if the number is even, otherwise answer 'no'.\n` +
+            `Answer "yes" if the number is even, otherwise answer "no".\n` +
             `Question: ${question.num}\n` +
             `Your answer: `,
         stringifyResult: (result, answer, question, input) => {
