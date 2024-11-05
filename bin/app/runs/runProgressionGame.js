@@ -6,7 +6,7 @@ import { runConsoleGame } from "./runConsoleGame.js";
 import { ProgressionGame } from "../games/progressionGame.js";
 export async function runProgressionGame() {
     const username = await getUsername();
-    const game = WithTermResult(WithMaxIterations(ProgressionGame(), 300), (result) => result === 'Fail');
+    const game = WithTermResult(WithMaxIterations(ProgressionGame(), 3), (result) => result === 'Fail');
     console.log(`Hello, ${username}!`);
     await runConsoleGame(game, {
         deserializeAnswer: (string, question) => ({

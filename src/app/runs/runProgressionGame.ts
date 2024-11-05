@@ -10,7 +10,7 @@ export async function runProgressionGame() {
     const game = WithTermResult(
         WithMaxIterations(
             ProgressionGame(),
-            300
+            3
         ),
         (result) => result === 'Fail'
     )
