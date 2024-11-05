@@ -1,4 +1,4 @@
-import { buildGame } from "../../libs/game/builder/buildSimpleGame";
+import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function createProgression(length = 10) {
     const num = Math.max(1, Math.round(Math.random() * 10));
     const startNum = Math.round(Math.random() * 20);

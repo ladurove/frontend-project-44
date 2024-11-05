@@ -1,8 +1,8 @@
-import { getUsername } from "../getUsername";
-import { WithTermResult } from "../../libs/game/modifiers/WithTermResult";
-import { WithMaxIterations } from "../../libs/game/modifiers/WithMaxIterations";
-import { runConsoleGame } from "./runConsoleGame";
-import { ProgressionGame } from "../games/progressionGame";
+import { getUsername } from "../getUsername.js";
+import { WithTermResult } from "../../libs/game/modifiers/WithTermResult.js";
+import { WithMaxIterations } from "../../libs/game/modifiers/WithMaxIterations.js";
+import { runConsoleGame } from "./runConsoleGame.js";
+import { ProgressionGame } from "../games/progressionGame.js";
 export async function runProgressionGame() {
     const username = await getUsername();
     const game = WithTermResult(WithMaxIterations(ProgressionGame(), 3), (result) => result === 'Fail');

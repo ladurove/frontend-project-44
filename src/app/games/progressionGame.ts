@@ -1,6 +1,6 @@
-import {Game} from "../../libs/game/backend/Game";
-import {randomOf} from "../../libs/libs";
-import {buildGame} from "../../libs/game/builder/buildSimpleGame";
+import {Game} from "../../libs/game/backend/Game.js";
+import {randomOf} from "../../libs/libs.js";
+import {buildGame} from "../../libs/game/builder/buildSimpleGame.js";
 
 
 export namespace ProgressionGame {
