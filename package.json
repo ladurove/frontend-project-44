@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "tsx src/app/main.ts",
+    "make-bin": "tsx make-bin.ts",
     "build": "tsc"
   },
   "author": "",
@@ -23,6 +24,11 @@
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.7.0",
     "@types/node": "^22.8.2",
+    "eslint": "^8.57.0",
+    "eslint-auto-fix": "^1.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.8.0",
     "node": "^23.1.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
