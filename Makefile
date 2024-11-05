@@ -1,4 +1,5 @@
 install:
+	npm run make-bin
 	npm ci
 
 brain-games:
@@ -26,6 +27,7 @@ brain-prime:
 	node bin/brain-prime.js
 
 publish:
+	npm run make-bin
 	npm publish --dry-run
 
 lint:
