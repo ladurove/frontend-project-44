@@ -35,6 +35,7 @@ export const CalcGame = (): CalcGame => buildGame<CalcGame>(async (builder) => {
     )
 
     while (true) {
+        await
         const question = createQuestion()
 
         const [answer, answerResolve] = await builder.next(question)
