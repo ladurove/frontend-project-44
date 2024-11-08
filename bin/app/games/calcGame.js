@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { randomOf } from "../../libs/libs.js";
 import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function createQuestion() {

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { GameController } from "../backend/GameController.js";
 import { GameFinishError } from "./GameFinishError.js";
 export function buildGame(iter) {

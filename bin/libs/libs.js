@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as readline from "node:readline/promises";
 export function readln(question = "") {
     const readlineInterface = readline.createInterface({ input: process.stdin, output: process.stdout });

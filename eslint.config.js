@@ -18,8 +18,8 @@ const compat = new FlatCompat({
 /** @type { import("eslint").Linter.Config[] } */
 export default [
   ...compat.plugins('eslint-plugin-import'),
-  pluginJs.configs.recommended,
   ...pluginTSEslint.configs.recommended,
+  pluginJs.configs.recommended,
   {languageOptions: { globals: globals.node }},
   {
     plugins: {

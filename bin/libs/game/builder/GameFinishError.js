@@ -1,4 +1,3 @@
-/* eslint-disable */
 /**
  * Кидается внутри GameBuilder#finish, чтобы остановить игру
  */

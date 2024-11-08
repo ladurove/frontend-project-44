@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function createProgression(length = 10) {
     if (length < 2)

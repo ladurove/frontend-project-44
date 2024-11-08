@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function isPrime(num) {
     for (let i = 2, s = Math.sqrt(num); i <= s; i++)

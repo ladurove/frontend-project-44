@@ -1,4 +1,3 @@
-/* eslint-disable */
 export function WithTermResult(game, predicate) {
     return {
         ...game,

@@ -7,15 +7,15 @@ if (fs.existsSync('./bin'))
 execSync('tsc')
 
 // add /* eslint-disable */
-;(() => {
-    const files = fs.readdirSync('./bin', {recursive: true})
-        .filter(it => it.toString().endsWith('.js') && fs.statSync(`./bin/${it}`).isFile())
-    for (const filename of files) {
-        const content = fs.readFileSync(`./bin/${filename}`, 'utf-8')
-        const newContent = "/* eslint-disable */\n" + content
-        fs.writeFileSync(`./bin/${filename}`, newContent)
-    }
-})()
+// ;(() => {
+//     const files = fs.readdirSync('./bin', {recursive: true})
+//         .filter(it => it.toString().endsWith('.js') && fs.statSync(`./bin/${it}`).isFile())
+//     for (const filename of files) {
+//         const content = fs.readFileSync(`./bin/${filename}`, 'utf-8')
+//         const newContent = "/* eslint-disable */\n" + content
+//         fs.writeFileSync(`./bin/${filename}`, newContent)
+//     }
+// })()
 
 // add #!/usr/bin/env node
 ;(() => {

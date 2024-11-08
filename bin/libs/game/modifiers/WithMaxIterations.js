@@ -1,4 +1,3 @@
-/* eslint-disable */
 export function WithMaxIterations(game, iterations) {
     let iteration = 0;
     return {

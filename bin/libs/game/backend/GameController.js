@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { MutableQueue } from "../../Queue.js";
 import { GameFinishError } from "../builder/GameFinishError.js";
 export function GameController() {
