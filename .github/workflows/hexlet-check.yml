@@ -28,3 +28,6 @@ jobs:
         uses: hexlet/project-action@release
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
+
+      - name: eslint
+        run: npx eslint ./src

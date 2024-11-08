@@ -56,11 +56,10 @@ export function buildSimpleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(
         .then((gameResult) => {
             if (game.isActive)
                 controller.finish(gameResult)
-            // console.log("     LOG: Game finished successfully")
         })
         .catch((err) => {
             if (err instanceof GameFinishError) {
-                // console.log("     LOG: Game finished successfully")
+                // do nothing
             } else {
                 console.log(`     LOG: Game finished with exception ${JSON.stringify(err)}`)
                 throw err

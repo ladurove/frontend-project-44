@@ -1,7 +1,6 @@
 import {getUsername} from "../getUsername.js";
 import {WithTermResult} from "../../libs/game/modifiers/WithTermResult.js";
 import {WithMaxIterations} from "../../libs/game/modifiers/WithMaxIterations.js";
-import {CalcGame} from "../games/calcGame.js";
 import {runConsoleGame} from "./runConsoleGame.js";
 import {ProgressionGame} from "../games/progressionGame.js";
 

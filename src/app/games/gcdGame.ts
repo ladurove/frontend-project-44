@@ -12,17 +12,14 @@ function findGcd(num1: number, num2: number): number {
     return gcd
 }
 
+export type Question = {a: number, b: number, validAnswer: number}
+export type Answer = number
+export type Result = "Valid" | "Fail"
+export type GameResult = {validAnswers: number, invalidAnswers: number}
 
-export namespace GdcGame {
-    export type Question = {a: number, b: number, validAnswer: number}
-    export type Answer = number
-    export type Result = "Valid" | "Fail"
-    export type GameResult = {validAnswers: number, invalidAnswers: number}
-}
+export type GdcGame = Game<Question, Answer, Result, GameResult>
 
-export type GdcGame = Game<GdcGame.Question, GdcGame.Answer, GdcGame.Result, GdcGame.GameResult>
-
-function createQuestion(): GdcGame.Question {
+function createQuestion(): Question {
     const num1 = Math.ceil(Math.random() * 10)
     const num2 = Math.ceil(Math.random() * 10)
     const correctGcd = findGcd(num1, num2)

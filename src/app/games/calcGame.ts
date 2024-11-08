@@ -1,17 +1,16 @@
 import type {Game} from "../../libs/game/backend/Game.js";
 import {randomOf} from "../../libs/libs.js";
-import {buildGame, buildSimpleGame} from "../../libs/game/builder/buildSimpleGame.js";
+import {buildGame} from "../../libs/game/builder/buildSimpleGame.js";
 
-export namespace CalcGame {
-    export type Question = {a: number, b: number, operation: '-' | '+' | '*', validAnswer: number}
-    export type Answer = number
-    export type Result = "Valid" | "Fail"
-    export type GameResult = {validAnswers: number, invalidAnswers: number}
-}
 
-export type CalcGame = Game<CalcGame.Question, CalcGame.Answer, CalcGame.Result, CalcGame.GameResult>
+export type Question = {a: number, b: number, operation: '-' | '+' | '*', validAnswer: number}
+export type Answer = number
+export type Result = "Valid" | "Fail"
+export type GameResult = {validAnswers: number, invalidAnswers: number}
 
-function createQuestion(): CalcGame.Question {
+export type CalcGame = Game<Question, Answer, Result, GameResult>
+
+function createQuestion(): Question {
     const num1 = Math.round(Math.random() * 10)
     const num2 = Math.round(Math.random() * 10)
     const operation = randomOf(["+", "-", "*"])

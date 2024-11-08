@@ -1,18 +1,15 @@
 import type {Game} from "../../libs/game/backend/Game.js";
-import {randomOf} from "../../libs/libs.js";
 import {buildGame} from "../../libs/game/builder/buildSimpleGame.js";
 
 
-export namespace ProgressionGame {
-    export type Question = {before: number[], after: number[], validAnswer: number}
-    export type Answer = number
-    export type Result = "Valid" | "Fail"
-    export type GameResult = {validAnswers: number, invalidAnswers: number}
-}
+export type Question = {before: number[], after: number[], validAnswer: number}
+export type Answer = number
+export type Result = "Valid" | "Fail"
+export type GameResult = {validAnswers: number, invalidAnswers: number}
 
-export type ProgressionGame = Game<ProgressionGame.Question, ProgressionGame.Answer, ProgressionGame.Result, ProgressionGame.GameResult>
+export type ProgressionGame = Game<Question, Answer, Result, GameResult>
 
-function createProgression(length: number = 10): ProgressionGame.Question {
+function createProgression(length: number = 10): Question {
     if (length < 2) throw Error('length must be >= 2')
     const num = Math.max(1, Math.round(Math.random() * 10))
     const startNum = Math.round(Math.random() * 20)
