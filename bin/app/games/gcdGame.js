@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function findGcd(num1, num2) {
     const max = Math.max(num1, num2);

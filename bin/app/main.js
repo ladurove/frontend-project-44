@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { runEvenGame } from "./runs/runEvenGame.js";
 import { runGcdGame } from "./runs/runGcdGame.js";

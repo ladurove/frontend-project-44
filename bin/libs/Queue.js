@@ -1,3 +1,4 @@
+/* eslint-disable */
 class MutableQueueImpl {
     list = [];
     listListeners = [];

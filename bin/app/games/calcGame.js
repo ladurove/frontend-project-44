@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { randomOf } from "../../libs/libs.js";
 import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function createQuestion() {
@@ -20,7 +21,6 @@ export const CalcGame = () => buildGame(async (builder) => {
     let invalidAnswers = 0;
     builder.onFinishRequest(async () => ({ validAnswers, invalidAnswers }));
     while (true) {
-        await ;
         const question = createQuestion();
         const [answer, answerResolve] = await builder.next(question);
         if (answer === question.validAnswer) {

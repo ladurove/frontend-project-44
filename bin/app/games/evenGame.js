@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { buildGame } from "../../libs/game/builder/buildSimpleGame.js";
 function createQuestion() {
     const num = Math.round(Math.random() * 10);

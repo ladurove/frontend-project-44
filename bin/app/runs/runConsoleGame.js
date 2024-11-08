@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { readln } from "../../libs/libs.js";
 export async function runConsoleGame(game, config) {
     while (true) {

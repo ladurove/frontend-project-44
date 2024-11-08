@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { getUsername } from "../getUsername.js";
 import { WithTermResult } from "../../libs/game/modifiers/WithTermResult.js";
 import { WithMaxIterations } from "../../libs/game/modifiers/WithMaxIterations.js";
