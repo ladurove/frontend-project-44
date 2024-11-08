@@ -21,6 +21,8 @@
     "brain-prime": "bin/brain-prime.js"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "eslint-plugin-import": "^2.31.0",
     "typescript-eslint": "^8.13.0"
   },
   "devDependencies": {
