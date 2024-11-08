@@ -20,11 +20,6 @@
     "brain-progression": "bin/brain-progression.js",
     "brain-prime": "bin/brain-prime.js"
   },
-  "dependencies": {
-    "@eslint/eslintrc": "^3.1.0",
-    "eslint-plugin-import": "^2.31.0",
-    "typescript-eslint": "^8.13.0"
-  },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
     "@types/node": "^22.8.2",
@@ -32,6 +27,9 @@
     "globals": "^15.12.0",
     "node": "^23.1.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "@eslint/eslintrc": "^3.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "typescript-eslint": "^8.13.0"
   }
 }
