@@ -1,5 +1,4 @@
 import { runConsoleGame } from "./runConsoleGame.js";
-import {CalcGame} from "braingames/dist/braingames/calcGame.js";
 import {WithMaxIterations, WithTermResult} from "game";
 import {getUsername} from "../getUsername.js";
 import {ProgressionGame} from "braingames";
