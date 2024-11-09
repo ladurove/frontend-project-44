@@ -1,11 +1,11 @@
-import { getUsername } from "../getUsername.js";
-import { WithTermResult } from "../../libs/game/modifiers/WithTermResult.js";
-import { WithMaxIterations } from "../../libs/game/modifiers/WithMaxIterations.js";
-import { EvenGame } from "../games/evenGame.js";
 import { runConsoleGame } from "./runConsoleGame.js";
+import {WithMaxIterations, WithTermResult} from "game";
+import {getUsername} from "../getUsername.js";
+import {EvenGame} from "braingames/dist/index.js";
+
 export async function runEvenGame() {
     const username = await getUsername();
-    const game = WithTermResult(WithMaxIterations(EvenGame(), 3), (result) => result === 'Fail');
+    const game = WithTermResult(WithMaxIterations(EvenGame.EvenGame(), 3), (result) => result === 'Fail');
     console.log(`Hello, ${username}!`);
     await runConsoleGame(game, {
         deserializeAnswer: (string) => {

@@ -3,12 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/ladurove/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ladurove/frontend-project-44/actions)",
-  "main": "src/app/main.ts",
+  "main": ".src/app/main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "tsx src/app/main.ts",
-    "make-bin": "tsx make-bin.ts",
-    "build": "tsc"
+    "preinstall": "npm run build:this --prefix packages/stdlibs && npm run build:this --prefix packages/game && npm run build:this --prefix packages/braingames"
   },
   "author": "",
   "license": "ISC",
@@ -28,8 +25,11 @@
     "node": "^23.1.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
-    "@eslint/eslintrc": "^3.1.0",
-    "eslint-plugin-import": "^2.31.0",
     "typescript-eslint": "^8.13.0"
+  },
+  "dependencies": {
+    "braingames": "file:./packages/braingames",
+    "game": "file:./packages/game",
+    "stdlibs": "file:./packages/stdlibs"
   }
 }

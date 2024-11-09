@@ -1,4 +1,5 @@
-import { readln } from "../../libs/libs.js";
+import {readln} from "stdlibs";
+
 export async function runConsoleGame(game, config) {
     while (true) {
         const next = await game.questions.next();

@@ -1,11 +1,12 @@
-import { getUsername } from "../getUsername.js";
-import { WithTermResult } from "../../libs/game/modifiers/WithTermResult.js";
-import { WithMaxIterations } from "../../libs/game/modifiers/WithMaxIterations.js";
 import { runConsoleGame } from "./runConsoleGame.js";
-import { ProgressionGame } from "../games/progressionGame.js";
+import {CalcGame} from "braingames/dist/braingames/calcGame.js";
+import {WithMaxIterations, WithTermResult} from "game";
+import {getUsername} from "../getUsername.js";
+import {ProgressionGame} from "braingames/dist/index.js";
+
 export async function runProgressionGame() {
     const username = await getUsername();
-    const game = WithTermResult(WithMaxIterations(ProgressionGame(), 3), (result) => result === 'Fail');
+    const game = WithTermResult(WithMaxIterations(ProgressionGame.ProgressionGame(), 3), (result) => result === 'Fail');
     console.log(`Hello, ${username}!`);
     await runConsoleGame(game, {
         deserializeAnswer: (string) => ({

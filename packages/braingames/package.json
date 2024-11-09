@@ -1,0 +1,24 @@
+{
+  "name": "braingames",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build:deps": "npm run build --prefix ../stdlibs && npm run build --prefix ../game",
+    "build:this": "tsc",
+    "build": "npm run build:deps && npm run build:this"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "game": "file:../game",
+    "stdlibs": "file:../stdlibs"
+  }
+}
