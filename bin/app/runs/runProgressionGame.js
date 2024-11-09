@@ -2,7 +2,7 @@ import { runConsoleGame } from "./runConsoleGame.js";
 import {CalcGame} from "braingames/dist/braingames/calcGame.js";
 import {WithMaxIterations, WithTermResult} from "game";
 import {getUsername} from "../getUsername.js";
-import {ProgressionGame} from "braingames/dist/index.js";
+import {ProgressionGame} from "braingames";
 
 export async function runProgressionGame() {
     const username = await getUsername();

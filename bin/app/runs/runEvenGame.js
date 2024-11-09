@@ -1,7 +1,7 @@
 import { runConsoleGame } from "./runConsoleGame.js";
 import {WithMaxIterations, WithTermResult} from "game";
 import {getUsername} from "../getUsername.js";
-import {EvenGame} from "braingames/dist/index.js";
+import {EvenGame} from "braingames";
 
 export async function runEvenGame() {
     const username = await getUsername();

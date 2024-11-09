@@ -1,7 +1,7 @@
 import { runConsoleGame } from "./runConsoleGame.js";
 import {WithMaxIterations, WithTermResult} from "game";
 import {getUsername} from "../getUsername.js";
-import {GCDGame} from "braingames/dist/index.js";
+import {GCDGame} from "braingames";
 
 export async function runGcdGame() {
     const username = await getUsername();
