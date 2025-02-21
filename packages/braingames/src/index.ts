@@ -1,0 +1,5 @@
+export * as CalcGame from './braingames/calcGame.js'
+export * as EvenGame from './braingames/evenGame.js'
+export * as GCDGame from './braingames/gcdGame.js'
+export * as PrimeGame from './braingames/primeGame.js'
+export * as ProgressionGame from './braingames/progressionGame.js'

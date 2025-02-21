@@ -1,0 +1,15 @@
+{
+  // https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html#im-writing-a-library
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "node16",
+    "target": "es2017",
+    "declaration": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "sourceMap": true,
+    "declarationMap": true,
+  }
+}
