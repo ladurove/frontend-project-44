@@ -1,6 +1,5 @@
-import {buildGame, type Game} from "game";
-import {randomOf} from "stdlibs";
-
+import type {Game} from "../game/backend/Game.js";
+import {buildGame} from "../game/builder/buildSimpleGame.js";
 
 export type Question = {before: number[], after: number[], validAnswer: number}
 export type Answer = number

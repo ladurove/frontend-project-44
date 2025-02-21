@@ -1,7 +1,0 @@
-export * from "./game/backend/Game.js"
-export * from "./game/backend/GameController.js"
-export * from "./game/builder/GameBuilder.js"
-export * from "./game/builder/buildSimpleGame.js"
-export * from "./game/builder/GameFinishError.js"
-export * from "./game/modifiers/WithTermResult.js"
-export * from "./game/modifiers/WithMaxIterations.js"

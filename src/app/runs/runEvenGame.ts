@@ -1,14 +1,15 @@
-import { EvenGame } from "braingames";
 import {getUsername} from "../getUsername.js";
 import {runConsoleGame} from "./runConsoleGame.js";
-import {WithMaxIterations, WithTermResult} from "game";
+import {WithMaxIterations} from "../../packages/game/modifiers/WithMaxIterations.js";
+import {WithTermResult} from "../../packages/game/modifiers/WithTermResult.js";
+import {createEvenGame} from "../../packages/braingames/evenGame.js";
 
 
 export async function runEvenGame() {
     const username = await getUsername()
     const game = WithTermResult(
         WithMaxIterations(
-            EvenGame.create(),
+            createEvenGame(),
             3
         ),
         (result) => result === 'Fail'

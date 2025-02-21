@@ -1,26 +1,20 @@
-import {buildGame, type Game} from "game";
-import {randomOf} from "stdlibs";
-
+import type {Game} from "../game/backend/Game.js";
+import {buildGame} from "../game/builder/buildSimpleGame.js";
 
 export type Question = {num: number, validAnswer: boolean}
 export type Answer = boolean
 export type Result = "Valid" | "Fail"
 export type GameResult = {validAnswers: number, invalidAnswers: number}
 
-export type PrimeGame = Game<Question, Answer, Result, GameResult>
-
-function isPrime(num: number) {
-    for(let i = 2, s = Math.sqrt(num); i <= s; i++)
-        if(num % i === 0) return false
-    return num > 1
-}
+export type EvenGame = Game<Question, Answer, Result, GameResult>
 
 function createQuestion(): Question {
     const num = Math.round(Math.random() * 10)
-    return {num, validAnswer: isPrime(num)}
+    const isEven = num % 2 == 0
+    return {num, validAnswer: isEven}
 }
 
-export const create = (): PrimeGame => buildGame<PrimeGame>(async (builder) => {
+export const createEvenGame = (): EvenGame => buildGame<EvenGame>(async (builder) => {
     let validAnswers = 0
     let invalidAnswers = 0
     builder.onFinishRequest(async () =>

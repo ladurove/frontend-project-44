@@ -1,5 +1,6 @@
-import {buildGame, type Game} from "game";
-import {randomOf} from "stdlibs";
+import type {Game} from "../game/backend/Game.js";
+import {randomOf} from "../stdlibs/libs.js";
+import {buildGame} from "../game/builder/buildSimpleGame.js";
 
 export type Question = {a: number, b: number, operation: '-' | '+' | '*', validAnswer: number}
 export type Answer = number
@@ -22,10 +23,10 @@ function createQuestion(): Question {
         throw Error('unreachable')
     })()
 
-    return {a: num1, b: num2, operation: operation, validAnswer: result}
+    return <Question>{a: num1, b: num2, operation: operation, validAnswer: result}
 }
 
-export const create = (): CalcGame => buildGame<CalcGame>(async (builder) => {
+export const createCalcGame = (): CalcGame => buildGame<CalcGame>(async (builder) => {
     let validAnswers = 0
     let invalidAnswers = 0
     builder.onFinishRequest(async () =>

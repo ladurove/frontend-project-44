@@ -1,14 +1,15 @@
-import { GCDGame } from "braingames";
 import {getUsername} from "../getUsername.js";
 import {runConsoleGame} from "./runConsoleGame.js";
-import {WithMaxIterations, WithTermResult} from "game";
+import {WithTermResult} from "../../packages/game/modifiers/WithTermResult.js";
+import {WithMaxIterations} from "../../packages/game/modifiers/WithMaxIterations.js";
+import {createGcdGame} from "../../packages/braingames/gcdGame.js";
 
 
 export async function runGcdGame() {
     const username = await getUsername()
     const game = WithTermResult(
         WithMaxIterations(
-            GCDGame.create(),
+            createGcdGame(),
             3
         ),
         (result) => result === 'Fail'

@@ -1,6 +1,5 @@
-import {buildGame, type Game} from "game";
-import {randomOf} from "stdlibs";
-
+import type {Game} from "../game/backend/Game.js";
+import {buildGame} from "../game/builder/buildSimpleGame.js";
 
 function findGcd(num1: number, num2: number): number {
     const max = Math.max(num1, num2)
@@ -26,7 +25,7 @@ function createQuestion(): Question {
     return {a: num1, b: num2, validAnswer: correctGcd}
 }
 
-export const create = (): GdcGame => buildGame<GdcGame>(async (builder) => {
+export const createGcdGame = (): GdcGame => buildGame<GdcGame>(async (builder) => {
     let validAnswers = 0
     let invalidAnswers = 0
     builder.onFinishRequest(async () =>

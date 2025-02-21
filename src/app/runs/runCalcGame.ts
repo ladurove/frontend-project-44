@@ -1,14 +1,15 @@
-import { CalcGame } from "braingames";
 import {getUsername} from "../getUsername.js";
 import {runConsoleGame} from "./runConsoleGame.js";
-import {WithMaxIterations, WithTermResult} from "game";
+import {createCalcGame} from "../../packages/braingames/calcGame.js";
+import {WithMaxIterations} from "../../packages/game/modifiers/WithMaxIterations.js";
+import {WithTermResult} from "../../packages/game/modifiers/WithTermResult.js";
 
 
 export async function runCalcGame() {
     const username = await getUsername()
     const game = WithTermResult(
         WithMaxIterations(
-            CalcGame.create(),
+            createCalcGame(),
             3
         ),
         (result) => result === 'Fail'

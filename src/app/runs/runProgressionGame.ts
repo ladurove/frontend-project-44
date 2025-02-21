@@ -1,13 +1,14 @@
 import {getUsername} from "../getUsername.js";
 import {runConsoleGame} from "./runConsoleGame.js";
-import {ProgressionGame} from "braingames";
-import {WithMaxIterations, WithTermResult} from "game";
+import {WithTermResult} from "../../packages/game/modifiers/WithTermResult.js";
+import {WithMaxIterations} from "../../packages/game/modifiers/WithMaxIterations.js";
+import {create} from "../../packages/braingames/progressionGame.js";
 
 export async function runProgressionGame() {
     const username = await getUsername()
     const game = WithTermResult(
         WithMaxIterations(
-            ProgressionGame.create(),
+            create(),
             3
         ),
         (result) => result === 'Fail'

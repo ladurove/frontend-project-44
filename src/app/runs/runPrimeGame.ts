@@ -1,14 +1,15 @@
-import { PrimeGame } from "braingames";
 import {getUsername} from "../getUsername.js";
 import {runConsoleGame} from "./runConsoleGame.js";
-import {WithMaxIterations, WithTermResult} from "game";
+import {WithTermResult} from "../../packages/game/modifiers/WithTermResult.js";
+import {WithMaxIterations} from "../../packages/game/modifiers/WithMaxIterations.js";
+import {createPrimeGame} from "../../packages/braingames/primeGame.js";
 
 
 export async function runPrimeGame() {
     const username = await getUsername()
     const game = WithTermResult(
         WithMaxIterations(
-            PrimeGame.create(),
+            createPrimeGame(),
             3
         ),
         (result) => result === 'Fail'

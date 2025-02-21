@@ -1,5 +1,5 @@
-import type {Game} from "game";
-import {readln} from "stdlibs";
+import type {Game} from "../../packages/game/backend/Game.js";
+import {readln} from "../../packages/stdlibs/libs.js";
 
 export async function runConsoleGame<QUESTION, ANSWER, RESULT, GAME_RESULT>(
     game: Game<QUESTION, ANSWER, RESULT, GAME_RESULT>,

@@ -1,5 +1,5 @@
 import {GameFinishError} from "../builder/GameFinishError.js";
-import {MutableQueue} from "stdlibs";
+import {MutableQueue} from "../../stdlibs/Queue.js";
 
 export interface GameController<QUESTION, ANSWER, RESULT, GAME_RESULT> {
     isActive: boolean
